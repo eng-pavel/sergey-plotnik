@@ -111,3 +111,24 @@ footer {
     padding: var(--spacing-sm) var(--spacing-md);
   }
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-phone {
+    width: 100%;
+  }
+
+  .footer-contacts {
+    max-width: 19rem;
+  }
+
+  .footer-whatsapp {
+    width: 100%;
+  }
+}
