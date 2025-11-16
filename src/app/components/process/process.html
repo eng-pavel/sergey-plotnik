@@ -1,0 +1,17 @@
+<section id="process" class="section process-section">
+  <h2>Как мы работаем</h2>
+  <div class="process-grid">
+    @for (step of workProcess; track step.step) {
+      <div class="process-step">
+        <div class="process-image-wrapper">
+          <img [src]="step.image" [alt]="step.title" class="process-image" />
+          <div class="process-step-number">{{ step.step }}</div>
+        </div>
+        <div class="process-info">
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>

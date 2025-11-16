@@ -4,13 +4,14 @@ import { IService, IProcessStep, IGalleryAlbum } from '../../models/albums.inter
 import { Header } from '../header/header';
 import { Hero } from '../hero/hero';
 import { Services } from '../services/services';
+import { Process } from '../process/process';
 
 /**
  * Основной компонент лендинга
  */
 @Component({
   selector: 'app-landing',
-  imports: [GalleriaModule, Header, Hero, Services],
+  imports: [GalleriaModule, Header, Hero, Services, Process],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
   standalone: true,
