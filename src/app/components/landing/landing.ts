@@ -46,8 +46,7 @@ export class Landing implements OnInit {
   initialImageIndex = 0;
   galleryAlbums: IGalleryAlbum[] = [];
 
-  heroBackgroundImage =
-    'https://images.unsplash.com/photo-1758448018619-4cbe2250b9ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920';
+  heroBackgroundImage = 'assets/images/background/hero-background.jpeg';
   heroGradient = 'linear-gradient(rgba(30, 93, 123, 0.85), rgba(22, 74, 97, 0.9))';
 
   services: IService[] = [
@@ -108,29 +107,25 @@ export class Landing implements OnInit {
       step: '1',
       title: 'Осмотр и консультация',
       description: 'Выезд и оценка объема работ',
-      image:
-        'https://images.unsplash.com/photo-1642006953665-4046190641ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: 'assets/images/background/step-1.jpeg',
     },
     {
       step: '2',
       title: 'Подготовка и демонтаж',
       description: 'Аккуратное вскрытие с минимальным повреждением',
-      image:
-        'https://images.unsplash.com/photo-1628002580365-f3c0a322d577?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: 'assets/images/background/step-2.jpeg',
     },
     {
       step: '3',
       title: 'Ремонт коммуникаций',
       description: 'Устранение проблемы, замена труб или установка люка',
-      image:
-        'https://images.unsplash.com/photo-1758239873506-82d0e76244f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: 'assets/images/background/step-3.jpeg',
     },
     {
       step: '4',
       title: 'Восстановление отделки',
       description: 'Возвращаем плитку в идеальное состояние',
-      image:
-        'https://images.unsplash.com/photo-1678743539452-9363f2fe86d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: 'assets/images/background/step-4.jpeg',
     },
   ];
 
