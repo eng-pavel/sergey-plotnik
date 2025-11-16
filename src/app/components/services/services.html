@@ -1,0 +1,14 @@
+<section id="services" class="section">
+  <h2>Наши услуги</h2>
+  <div class="services-grid">
+    @for (service of services; track service.title; let i = $index) {
+      <article class="service-card service-bg-{{ i }}" [class]="'service-card service-bg-' + i">
+        <div class="service-icon">{{ service.icon }}</div>
+        <div class="service-content">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<main>
+  <app-hero [backgroundImage]="heroBackgroundImage" [gradient]="heroGradient"> </app-hero>
+
+  <app-services [services]="services"></app-services>
+
+  <app-process [workProcess]="workProcess"></app-process>
+
+  <app-reasons [reasons]="reasons"></app-reasons>
+
+  <app-gallery [albums]="galleryAlbums" (imageClick)="openModal($event.image, $event.title)">
+  </app-gallery>
+
+  <app-reviews></app-reviews>
+</main>
+
+<app-footer></app-footer>
+
+<app-modal
+  [visible]="modalVisible"
+  [image]="currentImage"
+  [title]="currentTitle"
+  (close)="closeModal()"
+>
+</app-modal>

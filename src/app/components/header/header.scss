@@ -1,0 +1,35 @@
+header {
+  background-color: var(--color-bg-light);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.logo {
+  color: var(--color-primary);
+}
+
+.phone-link {
+  background-color: var(--color-accent);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.phone-link:hover {
+  background-color: var(--color-accent-dark);
+}
