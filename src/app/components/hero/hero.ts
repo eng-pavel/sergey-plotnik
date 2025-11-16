@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-hero',
@@ -11,6 +12,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class Hero {
   @Input() backgroundImage!: string;
   @Input() gradient!: string;
+
+  private contactService = inject(ContactService);
+
+  phoneLink = this.contactService.getPhoneLink();
+  whatsappLink = this.contactService.getWhatsAppLink();
 
   get backgroundStyle() {
     return {

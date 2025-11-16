@@ -27,6 +27,13 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .cta-button {
   background-color: var(--color-accent);
   color: white;
@@ -35,16 +42,28 @@
   border-radius: var(--radius);
   cursor: pointer;
   text-decoration: none;
-  display: inline-block;
-  transition:
-    transform 0.3s,
-    background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  transition: all 0.3s ease;
   font-size: 1.1rem;
+  text-align: center;
+  min-width: 160px;
+  font-weight: bold;
 }
 
 .cta-button:hover {
-  background-color: var(--color-accent-dark);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.whatsapp-button {
+  background-color: #25d366;
+}
+
+.whatsapp-button:hover {
+  background-color: #128c7e;
 }
 
 /* Tablet */
@@ -62,5 +81,18 @@
 @media (min-width: 1024px) {
   .hero {
     min-height: 700px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 280px;
   }
 }

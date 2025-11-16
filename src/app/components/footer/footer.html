@@ -2,8 +2,13 @@
   <div class="footer-content">
     <div class="footer-info">
       <h3>Свяжитесь с нами</h3>
-      <a [href]="'tel:' + phoneNumber" class="footer-phone"> 📞 {{ phoneNumber }} </a>
-      <p>Работаем ежедневно с 8:00 до 22:00</p>
+      <div class="footer-contacts">
+        <a [href]="phoneLink" class="footer-phone"> 📞 {{ contactInfo().phoneFormatted }} </a>
+        <a [href]="whatsappLink" target="_blank" class="footer-whatsapp">
+          💬 Написать в WhatsApp
+        </a>
+      </div>
+      <p>{{ contactInfo().workingHours }}</p>
     </div>
     <div class="footer-copyright">
       <p>&copy; 2025 Сантехнические Люки. Все права защищены.</p>
