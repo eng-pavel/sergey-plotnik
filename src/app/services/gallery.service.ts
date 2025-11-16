@@ -102,18 +102,55 @@ export class GalleryService {
         ],
       },
       {
-        id: 'furniture-assembly',
-        title: 'Сборка мебели',
-        preview: this.imageService.getGalleryImage('furniture-assembly', 'preview.jpeg'),
-        description: 'Профессиональная сборка корпусной и мягкой мебели.',
+        id: 'shower-stall',
+        title: 'Сборка и установка душевой кабины Timo TE-0720',
+        preview: this.imageService.getGalleryImage('shower-stall', 'preview.jpeg'),
+        description:
+          'Сборка, установка и демонтаж старой душевой заняло 1,5 дня. Все было выполнено качественно и аккуратно! ',
         images: [
           {
-            src: this.imageService.getGalleryImage('furniture-assembly', 'furniture1.jpeg'),
-            alt: 'Сборка шкафа-купе',
+            src: this.imageService.getGalleryImage('shower-stall', 'shower1.jpeg'),
+            alt: '',
           },
           {
-            src: this.imageService.getGalleryImage('furniture-assembly', 'furniture2.jpeg'),
-            alt: 'Сборка кухонного гарнитура',
+            src: this.imageService.getGalleryImage('shower-stall', 'shower2.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower3.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower4.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower5.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower6.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower7.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower8.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower9.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower10.jpeg'),
+            alt: '',
+          },
+          {
+            src: this.imageService.getGalleryImage('shower-stall', 'shower11.jpeg'),
+            alt: '',
           },
         ],
       },
