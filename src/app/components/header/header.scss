@@ -21,6 +21,17 @@ header {
   color: var(--color-primary);
 }
 
+.logo h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo p {
+  margin: 0;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
 .phone-link {
   background-color: var(--color-accent);
   color: white;
@@ -28,6 +39,7 @@ header {
   border-radius: var(--radius);
   text-decoration: none;
   transition: background-color 0.3s;
+  font-weight: bold;
 }
 
 .phone-link:hover {

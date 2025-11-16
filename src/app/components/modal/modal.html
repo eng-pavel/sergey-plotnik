@@ -1,0 +1,7 @@
+<div class="modal" [class.active]="visible" (click)="onBackdropClick($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="onClose()">×</button>
+    <img [src]="image" [alt]="title" class="modal-image" />
+    <h3>{{ title }}</h3>
+  </div>
+</div>
