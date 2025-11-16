@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { GalleriaModule } from 'primeng/galleria';
 import {
   IService,
@@ -15,6 +15,7 @@ import { Gallery } from '../gallery/gallery';
 import { Reviews } from '../reviews/reviews';
 import { Footer } from '../footer/footer';
 import { GalleryModal } from '../gallery-modal/gallery-modal';
+import { ImageService } from '../../services/image.service';
 
 /**
  * Основной компонент лендинга
@@ -38,10 +39,12 @@ import { GalleryModal } from '../gallery-modal/gallery-modal';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Landing {
+export class Landing implements OnInit {
+  private imageService = inject(ImageService);
   modalVisible = false;
   currentAlbumId: string | null = null;
   initialImageIndex = 0;
+  galleryAlbums: IGalleryAlbum[] = [];
 
   heroBackgroundImage =
     'https://images.unsplash.com/photo-1758448018619-4cbe2250b9ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920';
@@ -131,34 +134,42 @@ export class Landing {
     },
   ];
 
-  galleryAlbums: IGalleryAlbum[] = [
-    {
-      id: 'album-1',
-      title: 'Установка люка в ванной',
-      preview: 'assets/images/gallery/album-1/preview.jpg',
-      description: 'Аккуратная установка сантехнического люка с сохранением плитки',
-      images: [
-        { src: 'assets/images/gallery/album-1/photo1.jpg', alt: 'Установка люка - процесс работы' },
-        {
-          src: 'assets/images/gallery/album-1/photo2.jpg',
-          alt: 'Установка люка - готовый результат',
-        },
-        { src: 'assets/images/gallery/album-1/photo3.jpg', alt: 'Установка люка - детали' },
-      ],
-    },
-    {
-      id: 'album-2',
-      title: 'Замена труб водоснабжения',
-      preview: 'assets/images/gallery/album-2/preview.jpg',
-      description: 'Полная замена коммуникаций с минимальным повреждением отделки',
-      images: [
-        { src: 'assets/images/gallery/album-2/photo1.jpg', alt: 'Замена труб - демонтаж' },
-        { src: 'assets/images/gallery/album-2/photo2.jpg', alt: 'Замена труб - новые трубы' },
-        { src: 'assets/images/gallery/album-2/photo3.jpg', alt: 'Замена труб - восстановление' },
-      ],
-    },
-    // ... остальные альбомы
-  ];
+  async ngOnInit(): Promise<void> {
+    await this.loadGalleryAlbums();
+  }
+
+  private async loadGalleryAlbums(): Promise<void> {
+    this.galleryAlbums = [
+      {
+        id: 'office-partitions',
+        title: 'Офисные перегородки',
+        preview: this.imageService.getGalleryImage('office-partitions', 'preview.jpeg'),
+        description: 'Пример монтажа офисных перегородок разных конструкций.',
+        images: [
+          {
+            src: this.imageService.getGalleryImage('office-partitions', 'office1.jpeg'),
+            alt: 'Установка люка - процесс работы',
+          },
+          {
+            src: this.imageService.getGalleryImage('office-partitions', 'office2.jpeg'),
+            alt: 'Установка люка - готовый результат',
+          },
+        ],
+      },
+      {
+        id: 'playground',
+        title: 'Детская площадка',
+        preview: 'assets/images/gallery/album-2/preview.jpg',
+        description: 'Сборка была произведена мной за один день.',
+        images: [
+          { src: 'assets/images/gallery/album-2/photo1.jpg', alt: 'Замена труб - демонтаж' },
+          { src: 'assets/images/gallery/album-2/photo2.jpg', alt: 'Замена труб - новые трубы' },
+          { src: 'assets/images/gallery/album-2/photo3.jpg', alt: 'Замена труб - восстановление' },
+        ],
+      },
+      // ... остальные альбомы
+    ];
+  }
 
   openGalleryModal(event: IAlbumClickEvent): void {
     this.currentAlbumId = event.albumId;
