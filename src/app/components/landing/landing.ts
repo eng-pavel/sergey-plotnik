@@ -5,13 +5,15 @@ import { Header } from '../header/header';
 import { Hero } from '../hero/hero';
 import { Services } from '../services/services';
 import { Process } from '../process/process';
+import { Reasons } from '../reasons/reasons';
+import { Gallery } from '../gallery/gallery';
 
 /**
  * Основной компонент лендинга
  */
 @Component({
   selector: 'app-landing',
-  imports: [GalleriaModule, Header, Hero, Services, Process],
+  imports: [GalleriaModule, Header, Hero, Services, Process, Reasons, Gallery],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
   standalone: true,

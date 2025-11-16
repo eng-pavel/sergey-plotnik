@@ -1,0 +1,11 @@
+<section id="reasons" class="section reasons">
+  <h2>Когда нужен наш мастер?</h2>
+  <div class="reasons-list">
+    @for (reason of reasons; track reason; let i = $index) {
+      <div class="reason-item">
+        <div class="reason-number">{{ i + 1 }}</div>
+        <p class="reason-text">{{ reason }}</p>
+      </div>
+    }
+  </div>
+</section>

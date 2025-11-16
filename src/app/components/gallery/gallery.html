@@ -1,0 +1,14 @@
+<section id="gallery" class="section">
+  <h2>Примеры наших работ</h2>
+  <div class="gallery-grid">
+    @for (album of albums; track album.title) {
+      <article class="gallery-album" (click)="onImageClick(album)">
+        <img [src]="album.image" [alt]="album.title" class="gallery-image" />
+        <div class="gallery-info">
+          <h3>{{ album.title }}</h3>
+          <p>{{ album.description }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>

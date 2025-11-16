@@ -17,3 +17,8 @@ export interface IGalleryAlbum {
   image: string;
   description: string;
 }
+
+export interface IImageClickEvent {
+  image: string;
+  title: string;
+}
