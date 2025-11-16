@@ -16,50 +16,57 @@ footer {
 
 .footer-info h3 {
   color: white;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
   font-size: 1.5rem;
 }
 
 .footer-contacts {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   align-items: center;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
 }
 
 .footer-phone {
   color: white;
   text-decoration: none;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 600;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-md);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .footer-phone:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.footer-phone i {
+  font-size: 1.3rem;
 }
 
 .footer-whatsapp {
   background-color: #25d366;
   color: white;
-  padding: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius);
   text-decoration: none;
   transition: all 0.3s ease;
-  font-weight: bold;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-sm);
   border: 2px solid #25d366;
+  font-size: 1.1rem;
 }
 
 .footer-whatsapp:hover {
@@ -69,9 +76,14 @@ footer {
   box-shadow: var(--shadow-lg);
 }
 
+.footer-whatsapp i {
+  font-size: 1.3rem;
+}
+
 .footer-info p {
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
+  font-size: 1rem;
 }
 
 .footer-copyright {
@@ -90,12 +102,12 @@ footer {
   }
 
   .footer-phone {
-    border: none;
-    padding: 0;
+    font-size: 1.1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 
-  .footer-phone:hover {
-    background-color: transparent;
-    transform: none;
+  .footer-whatsapp {
+    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 }

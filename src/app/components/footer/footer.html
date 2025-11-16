@@ -3,9 +3,13 @@
     <div class="footer-info">
       <h3>Свяжитесь с нами</h3>
       <div class="footer-contacts">
-        <a [href]="phoneLink" class="footer-phone"> 📞 {{ contactInfo().phoneFormatted }} </a>
+        <a [href]="phoneLink" class="footer-phone">
+          <i class="pi pi-phone"></i>
+          {{ contactInfo().phoneFormatted }}
+        </a>
         <a [href]="whatsappLink" target="_blank" class="footer-whatsapp">
-          💬 Написать в WhatsApp
+          <i class="pi pi-whatsapp"></i>
+          Написать в WhatsApp
         </a>
       </div>
       <p>{{ contactInfo().workingHours }}</p>

@@ -5,8 +5,14 @@
       <p>Профессиональный мастер</p>
     </div>
     <div class="header-contacts">
-      <a [href]="phoneLink" class="phone-link"> 📞 {{ contactInfo().phoneFormatted }} </a>
-      <a [href]="whatsappLink" target="_blank" class="whatsapp-link"> 💬 WhatsApp </a>
+      <a [href]="phoneLink" class="phone-link">
+        <i class="pi pi-phone"></i>
+        {{ contactInfo().phoneFormatted }}
+      </a>
+      <a [href]="whatsappLink" target="_blank" class="whatsapp-link">
+        <i class="pi pi-whatsapp"></i>
+        WhatsApp
+      </a>
     </div>
   </div>
 </header>
