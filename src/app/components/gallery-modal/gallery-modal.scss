@@ -6,9 +6,8 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
-  overflow: auto;
-  padding: var(--spacing-lg);
+  background-color: rgba(0, 0, 0, 0.98);
+  overflow: hidden;
 }
 
 .gallery-modal.active {
@@ -19,35 +18,34 @@
 
 .gallery-modal-content {
   background: var(--color-bg-light);
-  border-radius: var(--radius);
-  max-width: 900px;
-  width: 100%;
+  border-radius: 12px;
+  width: 95vw;
+  height: 95vh;
+  max-width: 1400px;
   max-height: 90vh;
-  overflow: auto;
   position: relative;
   box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
+/* ===== КРЕСТИКИ ===== */
 .modal-close {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1001;
   transition: all 0.3s ease;
+  z-index: 1001;
 }
 
 .modal-close:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 1);
   transform: scale(1.1);
 }
 
@@ -55,66 +53,522 @@
   font-size: 1.2rem;
 }
 
+/* Десктопный крестик */
+.desktop-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+/* Мобильный крестик */
+.mobile-close {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 1002;
+}
+
+.mobile-close i {
+  font-size: 1.3rem;
+}
+
+/* ===== КОМПАКТНЫЙ ДЕСКТОПНЫЙ ХЕДЕР ===== */
 .gallery-header {
-  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
   border-bottom: 1px solid var(--color-border);
+  background: white;
+  flex-shrink: 0;
+  min-height: 60px;
+  box-sizing: border-box;
 }
 
-.gallery-header h3 {
+.header-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 60px;
+}
+
+.album-info h3 {
   color: var(--color-primary);
-  margin-bottom: var(--spacing-xs);
-  font-size: 1.5rem;
+  margin: 0 0 2px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.gallery-header p {
+.album-info p {
   color: var(--color-text-light);
   margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.2;
 }
 
-.gallery-main-image {
-  width: 100%;
-  height: 500px;
-  object-fit: contain;
+.keyboard-hints small {
+  color: var(--color-text-light);
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.gallery-counter {
+  background: var(--color-primary);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-right: 50px;
+}
+
+/* Основной контейнер для фото */
+.gallery-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 40px;
+  position: relative;
+  min-height: 0;
   background: #f8f9fa;
 }
 
-.gallery-thumbnail {
-  padding: 4px;
-}
-
-.thumbnail-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
+/* Десктопные кнопки навигации - УМЕНЬШЕННЫЕ */
+.nav-button.desktop-prev,
+.nav-button.desktop-next {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px; /* Уменьшено с 60px */
+  height: 50px; /* Уменьшено с 60px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.thumbnail-image:hover {
+.nav-button.desktop-prev:hover:not(:disabled),
+.nav-button.desktop-next:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-button.desktop-prev i,
+.nav-button.desktop-next i {
+  font-size: 1.4rem; /* Уменьшено с 1.8rem */
+}
+
+.desktop-prev {
+  left: 20px;
+}
+
+.desktop-next {
+  right: 20px;
+}
+
+/* Мобильные кнопки - СКРЫТЫ НА ДЕСКТОПЕ */
+.nav-button.mobile-prev,
+.nav-button.mobile-next {
+  display: none; /* По умолчанию скрыты */
+}
+
+.main-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 70px; /* Уменьшено для меньших стрелок */
+  position: relative;
+}
+
+.gallery-main-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-main-image:hover {
+  transform: scale(1.02);
+}
+
+/* Контейнер для миниатюр */
+.thumbnails-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-top: 1px solid var(--color-border);
+  background: white;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.thumbnail-item {
+  width: 55px;
+  height: 55px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: none;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.thumbnail-item:hover {
+  transform: scale(1.1);
+  border-color: var(--color-primary);
+}
+
+.thumbnail-item.active {
+  border-color: var(--color-accent);
   transform: scale(1.1);
 }
 
-/* Mobile */
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== MOBILE STYLES ===== */
 @media (max-width: 768px) {
-  .gallery-modal {
-    padding: var(--spacing-sm);
+  .gallery-modal-content {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: #000; /* Черный фон для всего контента */
   }
 
+  /* Скрываем десктопные элементы на мобилке */
+  .gallery-header,
+  .desktop-close,
+  .desktop-prev,
+  .desktop-next {
+    display: none;
+  }
+
+  /* Показываем мобильный крестик */
+  .mobile-close {
+    display: flex;
+  }
+
+  /* Показываем мобильные кнопки на мобилке */
+  .nav-button.mobile-prev,
+  .nav-button.mobile-next {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 50%;
+    z-index: 20;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-button.mobile-prev i,
+  .nav-button.mobile-next i {
+    font-size: 1.2rem;
+  }
+
+  .mobile-prev {
+    left: 12px;
+  }
+
+  .mobile-next {
+    right: 12px;
+  }
+
+  .mobile-prev:hover,
+  .mobile-next:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  /* Убираем все отступы и фон у контейнера */
+  .gallery-container {
+    padding: 0;
+    background: #000;
+    flex: 1;
+  }
+
+  .main-image-container {
+    padding: 0 !important;
+  }
+
+  .desktop-next {
+    display: none !important;
+  }
+
+  .desktop-prev {
+    display: none !important;
+  }
+
+  /* Основной контейнер изображения - занимает весь экран */
+  .main-image-container {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000; /* Черный фон */
+  }
+
+  /* Изображение на весь экран */
+  .gallery-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Сохраняем пропорции */
+    border-radius: 0;
+    box-shadow: none;
+    background: #000; /* Черный фон вокруг фото */
+  }
+
+  /* Мобильный счетчик поверх фото */
+  .mobile-counter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Миниатюры на мобилке */
+  .thumbnails-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 15px 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    justify-content: flex-start;
+    gap: 8px;
+    z-index: 25;
+  }
+
+  .thumbnail-item {
+    width: 48px;
+    height: 48px;
+    border-width: 2px;
+  }
+}
+
+/* ===== УЛУЧШЕНИЯ ДЛЯ ОЧЕНЬ ШИРОКИХ ЭКРАНОВ ===== */
+@media (min-width: 1600px) {
   .gallery-modal-content {
+    max-width: 1600px;
     max-height: 95vh;
   }
 
-  .gallery-main-image {
-    height: 300px;
-  }
-
   .gallery-header {
-    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+    padding: 20px 40px;
   }
 
-  .gallery-header h3 {
+  .album-info h3 {
+    font-size: 1.4rem;
+  }
+
+  .album-info p {
+    font-size: 1rem;
+  }
+
+  .desktop-close {
+    width: 45px;
+    height: 45px;
+  }
+
+  .desktop-close i {
     font-size: 1.3rem;
+  }
+
+  .gallery-container {
+    padding: 35px 50px;
+  }
+
+  .nav-button.desktop-prev,
+  .nav-button.desktop-next {
+    width: 55px; /* Немного больше для больших экранов */
+    height: 55px;
+  }
+
+  .nav-button.desktop-prev i,
+  .nav-button.desktop-next i {
+    font-size: 1.5rem;
+  }
+
+  .main-image-container {
+    padding: 0 90px;
+  }
+}
+
+/* ===== ДЛЯ НЕБОЛЬШИХ ДЕСКТОПОВ ===== */
+@media (max-width: 1200px) {
+  .gallery-header {
+    padding: 12px 25px;
+  }
+
+  .album-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .album-info p {
+    font-size: 0.8rem;
+  }
+
+  .gallery-counter {
+    font-size: 0.8rem;
+    margin-right: 40px;
+  }
+
+  .desktop-close {
+    width: 36px;
+    height: 36px;
+  }
+
+  .desktop-close i {
+    font-size: 1.1rem;
+  }
+
+  .nav-button.desktop-prev,
+  .nav-button.desktop-next {
+    width: 45px;
+    height: 45px;
+  }
+
+  .nav-button.desktop-prev i,
+  .nav-button.desktop-next i {
+    font-size: 1.3rem;
+  }
+
+  .main-image-container {
+    padding: 0 60px;
+  }
+}
+
+/* ===== ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ ===== */
+@media (max-width: 480px) {
+  .mobile-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-close i {
+    font-size: 1.2rem;
+  }
+
+  .nav-button.mobile-prev,
+  .nav-button.mobile-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-button.mobile-prev i,
+  .nav-button.mobile-next i {
+    font-size: 1.1rem;
+  }
+
+  .mobile-counter {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .thumbnail-item {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Для десктопных кнопок - темная обводка */
+.nav-button.desktop-prev:focus,
+.nav-button.desktop-next:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Для миниатюр - цветная обводка */
+.thumbnail-item:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+/* Для крестика - белая обводка */
+.modal-close:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Скрываем мобильные элементы на десктопе */
+@media (min-width: 769px) {
+  .mobile-prev,
+  .mobile-next,
+  .mobile-counter,
+  .mobile-close {
+    display: none;
+  }
+}
+
+/* Показываем десктопные элементы только на десктопе */
+@media (max-width: 768px) {
+  .desktop-prev,
+  .desktop-next,
+  .desktop-close {
+    display: none;
   }
 }

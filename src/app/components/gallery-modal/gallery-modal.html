@@ -1,37 +1,107 @@
 <div class="gallery-modal" [class.active]="visible" (click)="onBackdropClick($event)">
   <div class="gallery-modal-content" (click)="$event.stopPropagation()">
-    <button class="modal-close" (click)="onClose()">
+    <!-- Десктопный крестик -->
+    <button class="modal-close desktop-close" (click)="onClose()" aria-label="Закрыть галерею">
       <i class="pi pi-times"></i>
     </button>
 
-    @if (currentAlbum) {
-      <div class="gallery-header">
-        <h3>{{ currentAlbum.title }}</h3>
-        <p>{{ currentAlbum.description }}</p>
+    <!-- Мобильный крестик -->
+    <button class="modal-close mobile-close" (click)="onClose()" aria-label="Закрыть галерею">
+      <i class="pi pi-times"></i>
+    </button>
+
+    <div class="gallery-header">
+      <div class="header-left">
+        @if (currentImages.length > 1) {
+          <div class="keyboard-hints">
+            <small>← → для навигации, Esc для закрытия</small>
+          </div>
+        }
       </div>
 
-      <p-galleria
-        [value]="currentImages"
-        [responsiveOptions]="responsiveOptions"
-        [containerStyle]="{ 'max-width': '850px' }"
-        [numVisible]="5"
-        [circular]="true"
-        [fullScreen]="false"
-        [showItemNavigators]="true"
-        [showThumbnails]="true"
-        [thumbnailsPosition]="'bottom'"
-        [activeIndex]="initialImageIndex"
-      >
-        <ng-template pTemplate="item" let-item>
-          <img [src]="item.src" [alt]="item.alt" class="gallery-main-image" />
-        </ng-template>
+      <div class="header-center">
+        <div class="album-info">
+          <h3>{{ currentAlbum?.title }}</h3>
+          <p>{{ currentAlbum?.description }}</p>
+        </div>
+      </div>
 
-        <ng-template pTemplate="thumbnail" let-item>
-          <div class="gallery-thumbnail">
-            <img [src]="item.src" [alt]="item.alt" class="thumbnail-image" />
-          </div>
-        </ng-template>
-      </p-galleria>
+      <div class="header-right">
+        <div class="gallery-counter">{{ activeIndex() + 1 }} / {{ currentImages.length }}</div>
+      </div>
+    </div>
+
+    @if (currentAlbum) {
+      <div class="gallery-container">
+        <!-- Мобильные кнопки -->
+        <button
+          class="nav-button mobile-prev"
+          (click)="prev()"
+          [disabled]="currentImages.length <= 1"
+          aria-label="Предыдущее фото"
+        >
+          <i class="pi pi-chevron-left"></i>
+        </button>
+
+        <button
+          class="nav-button mobile-next"
+          (click)="next()"
+          [disabled]="currentImages.length <= 1"
+          aria-label="Следующее фото"
+        >
+          <i class="pi pi-chevron-right"></i>
+        </button>
+
+        <!-- Десктопные кнопки -->
+        <button
+          class="nav-button desktop-prev"
+          (click)="prev()"
+          [disabled]="currentImages.length <= 1"
+          aria-label="Предыдущее фото"
+        >
+          <i class="pi pi-chevron-left"></i>
+        </button>
+
+        <div class="main-image-container">
+          <img
+            [src]="currentImages[activeIndex()]?.src"
+            [alt]="currentImages[activeIndex()]?.alt"
+            class="gallery-main-image"
+            (click)="next()"
+            [attr.aria-label]="'Изображение ' + (activeIndex() + 1) + ' из ' + currentImages.length"
+          />
+
+          <!-- Мобильный счетчик -->
+          @if (currentImages.length > 1) {
+            <div class="mobile-counter">{{ activeIndex() + 1 }} / {{ currentImages.length }}</div>
+          }
+        </div>
+
+        <button
+          class="nav-button desktop-next"
+          (click)="next()"
+          [disabled]="currentImages.length <= 1"
+          aria-label="Следующее фото"
+        >
+          <i class="pi pi-chevron-right"></i>
+        </button>
+      </div>
+
+      @if (currentImages.length > 1) {
+        <div class="thumbnails-container">
+          @for (image of currentImages; track image.src; let i = $index) {
+            <button
+              class="thumbnail-item"
+              [class.active]="i === activeIndex()"
+              (click)="goToImage(i)"
+              [attr.aria-label]="'Перейти к изображению ' + (i + 1)"
+              [attr.aria-current]="i === activeIndex() ? 'true' : 'false'"
+            >
+              <img [src]="image.src" [alt]="image.alt" class="thumbnail-image" />
+            </button>
+          }
+        </div>
+      }
     }
   </div>
 </div>
