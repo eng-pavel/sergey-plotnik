@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +10,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header {
-  phoneNumber = '+79001234567';
+  private contactService = inject(ContactService);
+
+  contactInfo = this.contactService.contactInfoSignal;
+  phoneLink = this.contactService.getPhoneLink();
+  whatsappLink = this.contactService.getWhatsAppLink();
 }

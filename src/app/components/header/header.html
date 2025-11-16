@@ -4,6 +4,9 @@
       <h2>Сантехнические Люки</h2>
       <p>Профессиональный мастер</p>
     </div>
-    <a [href]="'tel:' + phoneNumber" class="phone-link"> 📞 {{ phoneNumber }} </a>
+    <div class="header-contacts">
+      <a [href]="phoneLink" class="phone-link"> 📞 {{ contactInfo().phoneFormatted }} </a>
+      <a [href]="whatsappLink" target="_blank" class="whatsapp-link"> 💬 WhatsApp </a>
+    </div>
   </div>
 </header>

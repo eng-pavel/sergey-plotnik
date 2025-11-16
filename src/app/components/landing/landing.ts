@@ -99,7 +99,7 @@ export class Landing {
     {
       step: '1',
       title: 'Осмотр и консультация',
-      description: 'Бесплатный выезд и оценка объема работ',
+      description: 'Выезд и оценка объема работ',
       image:
         'https://images.unsplash.com/photo-1642006953665-4046190641ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
     },
