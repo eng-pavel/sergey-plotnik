@@ -15,7 +15,7 @@ import { Gallery } from '../gallery/gallery';
 import { Reviews } from '../reviews/reviews';
 import { Footer } from '../footer/footer';
 import { GalleryModal } from '../gallery-modal/gallery-modal';
-import { ImageService } from '../../services/image.service';
+import { GalleryService } from '../../services/gallery.service';
 
 /**
  * Основной компонент лендинга
@@ -40,7 +40,7 @@ import { ImageService } from '../../services/image.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Landing implements OnInit {
-  private imageService = inject(ImageService);
+  private readonly galleryService = inject(GalleryService);
   modalVisible = false;
   currentAlbumId: string | null = null;
   initialImageIndex = 0;
@@ -134,54 +134,12 @@ export class Landing implements OnInit {
     },
   ];
 
-  async ngOnInit(): Promise<void> {
-    await this.loadGalleryAlbums();
+  ngOnInit(): void {
+    this.loadGalleryAlbums();
   }
 
-  private async loadGalleryAlbums(): Promise<void> {
-    this.galleryAlbums = [
-      {
-        id: 'office-partitions',
-        title: 'Офисные перегородки',
-        preview: this.imageService.getGalleryImage('office-partitions', 'preview.jpeg'),
-        description: 'Пример монтажа офисных перегородок разных конструкций.',
-        images: [
-          {
-            src: this.imageService.getGalleryImage('office-partitions', 'office1.jpeg'),
-            alt: '',
-          },
-          {
-            src: this.imageService.getGalleryImage('office-partitions', 'office2.jpeg'),
-            alt: '',
-          },
-        ],
-      },
-      {
-        id: 'playground',
-        title: 'Детская площадка',
-        preview: this.imageService.getGalleryImage('playground', 'preview.jpeg'),
-        description: 'Сборка была произведена мной за один день.',
-        images: [
-          { src: this.imageService.getGalleryImage('playground', 'playground1.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground2.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground3.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground4.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground5.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground6.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground7.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground8.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground9.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground10.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground11.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground12.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground13.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground14.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground15.jpeg'), alt: '' },
-          { src: this.imageService.getGalleryImage('playground', 'playground16.jpeg'), alt: '' },
-        ],
-      },
-      // ... остальные альбомы
-    ];
+  private loadGalleryAlbums(): void {
+    this.galleryAlbums = this.galleryService.getGalleryAlbums();
   }
 
   openGalleryModal(event: IAlbumClickEvent): void {

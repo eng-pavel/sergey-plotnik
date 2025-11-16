@@ -17,13 +17,4 @@ export class ImageService {
   getGalleryImage(albumName: string, imageName: string): string {
     return this.getImageUrl(`gallery/${albumName}/${imageName}`);
   }
-
-  async checkImageExists(url: string): Promise<boolean> {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-      img.src = url;
-    });
-  }
 }
