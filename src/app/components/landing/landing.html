@@ -9,18 +9,18 @@
 
   <app-reasons [reasons]="reasons"></app-reasons>
 
-  <app-gallery [albums]="galleryAlbums" (imageClick)="openModal($event.image, $event.title)">
-  </app-gallery>
+  <app-gallery [albums]="galleryAlbums" (albumClick)="openGalleryModal($event)"> </app-gallery>
 
   <app-reviews></app-reviews>
 </main>
 
 <app-footer></app-footer>
 
-<app-modal
+<app-gallery-modal
   [visible]="modalVisible"
-  [image]="currentImage"
-  [title]="currentTitle"
-  (close)="closeModal()"
+  [albums]="galleryAlbums"
+  [currentAlbumId]="currentAlbumId"
+  [initialImageIndex]="initialImageIndex"
+  (close)="closeGalleryModal()"
 >
-</app-modal>
+</app-gallery-modal>

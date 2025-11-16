@@ -1,0 +1,37 @@
+<div class="gallery-modal" [class.active]="visible" (click)="onBackdropClick($event)">
+  <div class="gallery-modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="onClose()">
+      <i class="pi pi-times"></i>
+    </button>
+
+    @if (currentAlbum) {
+      <div class="gallery-header">
+        <h3>{{ currentAlbum.title }}</h3>
+        <p>{{ currentAlbum.description }}</p>
+      </div>
+
+      <p-galleria
+        [value]="currentImages"
+        [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '850px' }"
+        [numVisible]="5"
+        [circular]="true"
+        [fullScreen]="false"
+        [showItemNavigators]="true"
+        [showThumbnails]="true"
+        [thumbnailsPosition]="'bottom'"
+        [activeIndex]="initialImageIndex"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item.src" [alt]="item.alt" class="gallery-main-image" />
+        </ng-template>
+
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="gallery-thumbnail">
+            <img [src]="item.src" [alt]="item.alt" class="thumbnail-image" />
+          </div>
+        </ng-template>
+      </p-galleria>
+    }
+  </div>
+</div>

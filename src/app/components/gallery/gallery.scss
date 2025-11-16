@@ -10,22 +10,24 @@
   overflow: hidden;
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .gallery-album:hover {
-  transform: scale(1.02);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .gallery-image {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .gallery-album:hover .gallery-image {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .gallery-info {
@@ -41,7 +43,19 @@
 .gallery-info p {
   color: var(--color-text-light);
   font-size: 0.9rem;
-  margin: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+.album-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+}
+
+.album-stats i {
+  font-size: 1rem;
 }
 
 /* Tablet */

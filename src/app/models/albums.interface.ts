@@ -12,13 +12,21 @@ export interface IProcessStep {
   image: string;
 }
 
-export interface IGalleryAlbum {
-  title: string;
-  image: string;
-  description: string;
+export interface IGalleryImage {
+  src: string;
+  alt: string;
+  title?: string;
 }
 
-export interface IImageClickEvent {
-  image: string;
+export interface IGalleryAlbum {
+  id: string;
   title: string;
+  preview: string; // превью для сетки
+  description: string;
+  images: IGalleryImage[]; // все фото альбома
+}
+
+export interface IAlbumClickEvent {
+  albumId: string;
+  initialImageIndex: number;
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IGalleryAlbum, IImageClickEvent } from '../../models/albums.interface';
+import { IAlbumClickEvent, IGalleryAlbum } from '../../models/albums.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -11,13 +11,17 @@ import { IGalleryAlbum, IImageClickEvent } from '../../models/albums.interface';
 })
 export class Gallery {
   @Input() albums: IGalleryAlbum[] = [];
-  @Output() imageClick = new EventEmitter<IImageClickEvent>();
+  @Output() albumClick = new EventEmitter<IAlbumClickEvent>();
 
-  onImageClick(album: IGalleryAlbum): void {
-    const clickEvent: IImageClickEvent = {
-      image: album.image,
-      title: album.title,
+  onAlbumClick(album: IGalleryAlbum): void {
+    const clickEvent: IAlbumClickEvent = {
+      albumId: album.id,
+      initialImageIndex: 0,
     };
-    this.imageClick.emit(clickEvent);
+    this.albumClick.emit(clickEvent);
+  }
+
+  trackByAlbumId(index: number, album: IGalleryAlbum): string {
+    return album.id;
   }
 }

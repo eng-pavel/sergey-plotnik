@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { GalleriaModule } from 'primeng/galleria';
-import { IService, IProcessStep, IGalleryAlbum } from '../../models/albums.interface';
+import {
+  IService,
+  IProcessStep,
+  IGalleryAlbum,
+  IAlbumClickEvent,
+} from '../../models/albums.interface';
 import { Header } from '../header/header';
 import { Hero } from '../hero/hero';
 import { Services } from '../services/services';
@@ -9,7 +14,7 @@ import { Reasons } from '../reasons/reasons';
 import { Gallery } from '../gallery/gallery';
 import { Reviews } from '../reviews/reviews';
 import { Footer } from '../footer/footer';
-import { Modal } from '../modal/modal';
+import { GalleryModal } from '../gallery-modal/gallery-modal';
 
 /**
  * Основной компонент лендинга
@@ -26,7 +31,7 @@ import { Modal } from '../modal/modal';
     Gallery,
     Reviews,
     Footer,
-    Modal,
+    GalleryModal,
   ],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
@@ -35,8 +40,8 @@ import { Modal } from '../modal/modal';
 })
 export class Landing {
   modalVisible = false;
-  currentImage = '';
-  currentTitle = '';
+  currentAlbumId: string | null = null;
+  initialImageIndex = 0;
 
   heroBackgroundImage =
     'https://images.unsplash.com/photo-1758448018619-4cbe2250b9ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920';
@@ -128,50 +133,42 @@ export class Landing {
 
   galleryAlbums: IGalleryAlbum[] = [
     {
+      id: 'album-1',
       title: 'Установка люка в ванной',
-      image:
-        'https://images.unsplash.com/photo-1758448018619-4cbe2250b9ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      preview: 'assets/images/gallery/album-1/preview.jpg',
       description: 'Аккуратная установка сантехнического люка с сохранением плитки',
+      images: [
+        { src: 'assets/images/gallery/album-1/photo1.jpg', alt: 'Установка люка - процесс работы' },
+        {
+          src: 'assets/images/gallery/album-1/photo2.jpg',
+          alt: 'Установка люка - готовый результат',
+        },
+        { src: 'assets/images/gallery/album-1/photo3.jpg', alt: 'Установка люка - детали' },
+      ],
     },
     {
+      id: 'album-2',
       title: 'Замена труб водоснабжения',
-      image:
-        'https://images.unsplash.com/photo-1650246363606-a2402ec42b08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      preview: 'assets/images/gallery/album-2/preview.jpg',
       description: 'Полная замена коммуникаций с минимальным повреждением отделки',
+      images: [
+        { src: 'assets/images/gallery/album-2/photo1.jpg', alt: 'Замена труб - демонтаж' },
+        { src: 'assets/images/gallery/album-2/photo2.jpg', alt: 'Замена труб - новые трубы' },
+        { src: 'assets/images/gallery/album-2/photo3.jpg', alt: 'Замена труб - восстановление' },
+      ],
     },
-    {
-      title: 'Ремонт санузла с плиткой',
-      image:
-        'https://images.unsplash.com/photo-1651544861863-e834ba8496e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
-      description: 'Восстановление плитки после доступа к трубам',
-    },
-    {
-      title: 'Современный санузел',
-      image:
-        'https://images.unsplash.com/photo-1638799869566-b17fa794c4de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
-      description: 'Установка люка в современном интерьере',
-    },
-    {
-      title: 'Укладка плитки на магнитах',
-      image:
-        'https://images.unsplash.com/photo-1703868669362-562283170216?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
-      description: 'Инновационное решение для легкого доступа',
-    },
-    {
-      title: 'Расширение люка',
-      image:
-        'https://images.unsplash.com/photo-1678924133506-7508daa13c7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
-      description: 'Увеличение проема под новый размер люка',
-    },
+    // ... остальные альбомы
   ];
 
-  openModal(image: string, title: string): void {
-    this.currentImage = image;
-    this.currentTitle = title;
+  openGalleryModal(event: IAlbumClickEvent): void {
+    this.currentAlbumId = event.albumId;
+    this.initialImageIndex = event.initialImageIndex;
     this.modalVisible = true;
   }
 
-  closeModal(): void {
+  closeGalleryModal(): void {
     this.modalVisible = false;
+    this.currentAlbumId = null;
+    this.initialImageIndex = 0;
   }
 }
