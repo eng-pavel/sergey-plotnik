@@ -55,43 +55,37 @@ export class Landing implements OnInit {
       description:
         'Профессиональная установка люков различных размеров для доступа к коммуникациям',
       icon: '🚪',
-      image:
-        'https://images.unsplash.com/photo-1759204078331-9817c4f20344?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: '',
     },
     {
       title: 'Расширение отверстия под люк',
       description: 'Аккуратное расширение проема с сохранением целостности стены',
       icon: '🔧',
-      image:
-        'https://images.unsplash.com/photo-1628002580365-f3c0a322d577?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: '',
     },
     {
       title: 'Снятие плитки с сохранением и без',
       description: 'Демонтаж плитки любой сложности с возможностью сохранения материала',
       icon: '🔨',
-      image:
-        'https://images.unsplash.com/photo-1678743539452-9363f2fe86d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: '',
     },
     {
       title: 'Восстановление плитки в исходное состояние',
       description: 'Реставрация плитки после ремонта коммуникаций',
       icon: '✨',
-      image:
-        'https://images.unsplash.com/photo-1713640113797-35abeadfe0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: '',
     },
     {
       title: 'Монтаж плитки на магнитах',
       description: 'Современное решение для быстрого доступа к трубам',
       icon: '🧲',
-      image:
-        'https://images.unsplash.com/photo-1559925534-3ef09900cfd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: '',
     },
     {
       title: 'Оперативный доступ к протечке труб',
       description: 'Срочный выезд и быстрое вскрытие для устранения аварий',
       icon: '⚡',
-      image:
-        'https://images.unsplash.com/photo-1518201660989-894b770d6e3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600',
+      image: '',
     },
   ];
 
