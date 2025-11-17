@@ -106,8 +106,18 @@ header {
   .whatsapp-link {
     flex: 1;
     gap: var(--spacing-xs);
+    height: var(--spacing-md);
     justify-content: center;
     min-width: 160px;
     padding: var(--spacing-sm) var(--spacing-sm);
+  }
+
+  .logo h2 {
+    margin: 0;
+    font-size: var(--spacing-sm) !important;
+  }
+
+  .logo p {
+    font-size: 0.8rem;
   }
 }
