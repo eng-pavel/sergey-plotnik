@@ -29,7 +29,8 @@ export class ContactService {
   }
 
   getWhatsAppLink(): string {
-    return `https://wa.me/${this.contactInfo().whatsapp}?text=Здравствуйте!%20Хочу%20заказать%20услугу%20по%20установке%20сантехнического%20люка`;
+    const message = `Здравствуйте! Хочу заказать услугу по предоставлению доступа к трубам с сохранением плитки`;
+    return `https://wa.me/${this.contactInfo().whatsapp}?text=${encodeURIComponent(message)}`;
   }
 
   updateContactInfo(newInfo: Partial<IContactInfo>): void {
