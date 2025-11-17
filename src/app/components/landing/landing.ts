@@ -116,7 +116,7 @@ export class Landing implements OnInit {
     {
       step: '4',
       title: 'Восстановление отделки',
-      description: 'Возвращаем плитку в идеальное состояние',
+      description: 'Возвращаю плитку в идеальное состояние',
       image: 'assets/images/background/step-4.jpeg',
     },
   ];
