@@ -11,7 +11,6 @@ import { Hero } from '../hero/hero';
 import { Services } from '../services/services';
 import { Process } from '../process/process';
 import { Reasons } from '../reasons/reasons';
-import { Gallery } from '../gallery/gallery';
 import { Reviews } from '../reviews/reviews';
 import { Footer } from '../footer/footer';
 import { GalleryModal } from '../gallery-modal/gallery-modal';
@@ -29,7 +28,6 @@ import { GalleryService } from '../../services/gallery.service';
     Services,
     Process,
     Reasons,
-    Gallery,
     Reviews,
     Footer,
     GalleryModal,
